@@ -1,0 +1,85 @@
+---
+categories:
+- Analysis
+- Visulization
+date: "2022-03-03"
+tags: ["R Markdown", "plot", "regression"]
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
+thumbnailImagePosition: left
+title: Data Science Post 1
+---
+Data Science Analysis and Visulization Post #1
+<!--more-->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+# Load Tidyverse Package
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+# Load Data Set
+```{r load-data, message=FALSE, eval=TRUE}
+admission <- read_csv("data/school-admissions.csv")
+```
+# Summary of Data Set
+```{r}
+summary(admission)
+```
+
+# Analysis Relationship between preference1 and school type by Plot Diagram
+```{r}
+ggplot(data = admission,
+       mapping = aes(x = TotalPreferences,
+                     y = Preference1,
+                     color = SchoolType)) +
+  geom_point() + 
+  labs(title = "School Preference Number 1 VS Total number Preference",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Total number of Preference", 
+       y = "Preference #1",
+       color = "SchoolType",
+       caption = "Source: data/school-admissions.csv") +
+  scale_color_viridis_d()
+```
+
+Throught the plot diagram we can discover that most school having huge number of preference 1 for primary school But when a school number of total reference over 100, no primary school would continue to admit student. Secondary students all having chance for preference 1 and increasing as total number of preference increasing. There is only a few chance for Junior student in preference 1. The slope for junior, primary and secondary student are all similar and about 1.
+
+# Analysis relationship of school type and Year with plot diagram
+```{r}
+ggplot(admission, 
+  aes(x = PupilAdmissionNumber_PAN,
+      y = TotalPreferences, 
+      color = SchoolType)) +
+  geom_point() +
+  labs(title = "Junior VS Primary VS Secondar",
+       subtitle = "Point Diagram",
+       x = "Published Admissions Number", 
+       y = "Total Preference Number",
+       color = "SchoolType",
+       caption = "Source: data/school-admissions.csv") +
+  facet_grid(Year ~ SchoolType) +
+  scale_color_viridis_d()
+```
+Through the graph we can see that Junior's total number of preference in 2018 and 2019 are about the same. Compare with Junior, Primary school having the simialr graph in 2018 and 2019. Secondary school are totally different. As we can see from the plot diagram. There is no data on year of 2018. But in 2019, there are a lot of preference applicants for secondary school. I think the reason behind this is seconday school does not accept admission other than preference. Start with 2019, all secondary school reach an agreement start to accept admission from non preference applicants. By using this data, we can using these data to take a hypohesis that Starting 2019, all Secondary school decide to admit applicants.
+
+# Free Place Comparsion
+```{r}
+ggplot(
+  admission,
+  aes(x = PupilAdmissionNumber_PAN, y = FreePlaces, color = SchoolType, group = SchoolType)
+) +
+  geom_line() +
+  facet_wrap(~Year) + 
+  scale_color_manual(values = c("red", "green", "yellow")) +
+  labs(
+    x = "Date", y = "Rating",
+    color = NULL,
+    title = "Free Place in 2018 and 2019",
+    subtitle = "Line Diagram",
+    caption = "Source: data/school-admissions.csv"
+  ) 
+```
+This broken line graph indicate the free Place oppourntity (other than Perference) in each different type of school. We can see tha secondary school are not having and free place availiable for applicans which means that they only accept preference admission. In 2019 Secondary school start to having space for non-preference applicant. At this point, All Secondary school has changed their policy.

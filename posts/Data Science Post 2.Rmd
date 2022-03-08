@@ -1,0 +1,38 @@
+---
+categories:
+- Analysis
+- Visulization
+date: "2022-03-03"
+showPagination: false
+tags:
+- pagination
+thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg
+thumbnailImagePosition: left
+title: Data Science Post 2
+---
+
+Data Science Analysis and Visulization Post #2
+<!--more-->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+```
+
+# Load Tidyverse Package
+```{r load-packages, message = FALSE}
+library(tidyverse)
+```
+
+# Load Data Set
+```{r load-data, message=FALSE, eval=TRUE}
+climate <- read_csv("data/climate.csv")
+```
+
+# Distribution of best living climate citys in each region
+```{r}
+ggplot(climate, aes(y = Region, fill = City)) +
+  geom_bar(position = "fill") + 
+  labs(title = "City With best live climate",
+       y = NULL, x = NULL)
+  
+```

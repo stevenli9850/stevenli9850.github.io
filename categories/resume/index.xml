@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Resume on Jiahui Li&#39;s Blog</title>
+    <link>https://example.org/categories/resume/</link>
+    <description>Recent content in Resume on Jiahui Li&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://example.org/categories/resume/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Myself</title>
+      <link>https://example.org/2022/03/about-myself/</link>
+      <pubDate>Thu, 03 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.org/2022/03/about-myself/</guid>
+      <description>&lt;p&gt;My Name is Jiahui Li who currently attempt in BSIS Major in iSchool. My interst in Artificial Intelligence, For my future career life. I wish I could continue to explore with this field.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
