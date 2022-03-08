@@ -1,4 +1,4 @@
-﻿Rank,City,Region,QualityofLifeIndex,Purchasing Power Index,Safety Index,Health Care Index,Cost of Living Index,Property Price to Income Ratio,Traffic Commute Time Index,Pollution Index,Climate Index
+﻿Rank,City,Region,QualityofLifeIndex,Purchasing Power Index,Safety Index,Health Care Index,CostofLivingIndex,Property Price to Income Ratio,Traffic Commute Time Index,Pollution Index,ClimateIndex
 1,"Raleigh, NC",east,208.9,147.16,65.09,75.64,66.74,3.06,32.79,21.88,83.88
 2,"Columbus, OH",east,199.58,146.93,56.58,73.95,68.45,4.2,24.94,25.96,71.29
 3,"Charlotte, NC",east,198.95,148.45,54.7,74.63,68.58,2.47,34.73,28.44,84.05

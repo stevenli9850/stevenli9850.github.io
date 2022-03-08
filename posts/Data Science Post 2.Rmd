@@ -23,9 +23,11 @@ knitr::opts_chunk$set(eval = TRUE)
 library(tidyverse)
 ```
 
-# Load Data Set
+# Load Data Set & Summary of Data Set
 ```{r load-data, message=FALSE, eval=TRUE}
 climate <- read_csv("data/climate.csv")
+dim(climate)
+summary(climate)
 ```
 
 # Distribution of best living climate citys in each region
@@ -33,6 +35,44 @@ climate <- read_csv("data/climate.csv")
 ggplot(climate, aes(y = Region, fill = City)) +
   geom_bar(position = "fill") + 
   labs(title = "City With best live climate",
+       caption = "Source: data/climate.csv",
        y = NULL, x = NULL)
   
 ```
+From this bar graph. We can having a brief view about the discribution of city that is great for live in the United States. Most of best living city are in east. Because the east region has more color compare with east and centural states.
+
+# How living cost influence livng quality
+```{r}
+
+ggplot(
+  data = climate,
+  mapping = aes(
+    y = CostofLivingIndex ,
+    x = QualityofLifeIndex)) + 
+    labs(title = "Living Cost and Living Quality",
+       caption = "Source: data/climate.csv",) +
+    geom_point( aes(color = Region))  + geom_smooth(color = "Black")
+```
+In this diagram. it represent the relationship between the living and cost. We can having a direct view that under most condition, a high living cost will be lower the living quality. This is also true in common life. People feels streeful when they live in a high economic stree environment. The line on graph has show a decreaing trent which represent the higher living quality score the lower of living cost. The point represent a city from east, west or centural. City from east has a wide range of difference living situations. 
+
+```{r}
+ggplot(climate, aes(
+  x = QualityofLifeIndex,
+  fill = Region
+)) +
+  geom_density(
+    adjust = 2,
+    alpha = 0.5
+  ) +
+  labs(
+    x = "Quality of Life Index",
+    y = "Density",
+    title = "Quality of Life In different region",
+    fill = "Region",
+    caption = "Source: data/climate.csv"
+  )
+```
+From this density graph, we can easily having a idea of which region having the highest living quality which is West city. East and centroal are about the same, but centural state having a higher desnity than east. So, we can rank three region by West better than ceuntrual and better than east.
+
+# Conclution
+In couclution, I would like to go over this post. The data set I hading using in this research is about living quality. Different type of graph has different preformance with to showing the result. Throught the data analysis that I had done above, West cities has the highest satisification for people to live with. People who live in est cities having a higher living quality score. In the end, I feel like the data set that I am using is a great resources for analysis practice. It helps me to figure out the best living place which is the question I had while work with this data set.

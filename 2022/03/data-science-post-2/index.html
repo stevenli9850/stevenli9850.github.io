@@ -310,17 +310,85 @@ Data Science Analysis and Visulization Post #2
 <h1>Load Tidyverse Package</h1>
 <pre class="r"><code>library(tidyverse)</code></pre>
 </div>
-<div id="load-data-set" class="section level1">
-<h1>Load Data Set</h1>
-<pre class="r"><code>climate &lt;- read_csv(&quot;data/climate.csv&quot;)</code></pre>
+<div id="load-data-set-summary-of-data-set" class="section level1">
+<h1>Load Data Set &amp; Summary of Data Set</h1>
+<pre class="r"><code>climate &lt;- read_csv(&quot;data/climate.csv&quot;)
+dim(climate)</code></pre>
+<pre><code>## [1] 52 12</code></pre>
+<pre class="r"><code>summary(climate)</code></pre>
+<pre><code>##       Rank           City              Region          QualityofLifeIndex
+##  Min.   : 1.00   Length:52          Length:52          Min.   :133.5     
+##  1st Qu.:13.75   Class :character   Class :character   1st Qu.:163.9     
+##  Median :26.50   Mode  :character   Mode  :character   Median :172.6     
+##  Mean   :26.50                                         Mean   :173.1     
+##  3rd Qu.:39.25                                         3rd Qu.:182.5     
+##  Max.   :52.00                                         Max.   :208.9     
+##  Purchasing Power Index  Safety Index   Health Care Index CostofLivingIndex
+##  Min.   : 82.06         Min.   :24.26   Min.   :55.83     Min.   : 62.07   
+##  1st Qu.:112.55         1st Qu.:41.13   1st Qu.:64.49     1st Qu.: 66.97   
+##  Median :126.17         Median :49.70   Median :70.22     Median : 72.20   
+##  Mean   :124.78         Mean   :48.05   Mean   :70.11     Mean   : 73.94   
+##  3rd Qu.:134.47         3rd Qu.:54.76   3rd Qu.:74.87     3rd Qu.: 77.69   
+##  Max.   :169.75         Max.   :67.15   Max.   :81.26     Max.   :103.25   
+##  Property Price to Income Ratio Traffic Commute Time Index Pollution Index
+##  Min.   :1.350                  Min.   :21.96              Min.   :16.20  
+##  1st Qu.:2.462                  1st Qu.:27.11              1st Qu.:29.31  
+##  Median :3.720                  Median :34.09              Median :38.84  
+##  Mean   :4.052                  Mean   :33.96              Mean   :38.98  
+##  3rd Qu.:5.050                  3rd Qu.:39.30              3rd Qu.:46.14  
+##  Max.   :9.830                  Max.   :61.07              Max.   :67.59  
+##   ClimateIndex  
+##  Min.   :41.61  
+##  1st Qu.:66.92  
+##  Median :78.82  
+##  Mean   :76.50  
+##  3rd Qu.:85.57  
+##  Max.   :97.26</code></pre>
 </div>
 <div id="distribution-of-best-living-climate-citys-in-each-region" class="section level1">
 <h1>Distribution of best living climate citys in each region</h1>
 <pre class="r"><code>ggplot(climate, aes(y = Region, fill = City)) +
   geom_bar(position = &quot;fill&quot;) + 
   labs(title = &quot;City With best live climate&quot;,
+       caption = &quot;Source: data/climate.csv&quot;,
        y = NULL, x = NULL)</code></pre>
-<p><img src="https://example.org/posts/Data%20Science%20Post%202_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="https://example.org/posts/Data%20Science%20Post%202_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+From this bar graph. We can having a brief view about the discribution of city that is great for live in the United States. Most of best living city are in east. Because the east region has more color compare with east and centural states.</p>
+</div>
+<div id="how-living-cost-influence-livng-quality" class="section level1">
+<h1>How living cost influence livng quality</h1>
+<pre class="r"><code>ggplot(
+  data = climate,
+  mapping = aes(
+    y = CostofLivingIndex ,
+    x = QualityofLifeIndex)) + 
+    labs(title = &quot;Living Cost and Living Quality&quot;,
+       caption = &quot;Source: data/climate.csv&quot;,) +
+    geom_point( aes(color = Region))  + geom_smooth(color = &quot;Black&quot;)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="https://example.org/posts/Data%20Science%20Post%202_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+In this diagram. it represent the relationship between the living and cost. We can having a direct view that under most condition, a high living cost will be lower the living quality. This is also true in common life. People feels streeful when they live in a high economic stree environment. The line on graph has show a decreaing trent which represent the higher living quality score the lower of living cost. The point represent a city from east, west or centural. City from east has a wide range of difference living situations.</p>
+<pre class="r"><code>ggplot(climate, aes(
+  x = QualityofLifeIndex,
+  fill = Region
+)) +
+  geom_density(
+    adjust = 2,
+    alpha = 0.5
+  ) +
+  labs(
+    x = &quot;Quality of Life Index&quot;,
+    y = &quot;Density&quot;,
+    title = &quot;Quality of Life In different region&quot;,
+    fill = &quot;Region&quot;,
+    caption = &quot;Source: data/climate.csv&quot;
+  )</code></pre>
+<p><img src="https://example.org/posts/Data%20Science%20Post%202_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+From this density graph, we can easily having a idea of which region having the highest living quality which is West city. East and centroal are about the same, but centural state having a higher desnity than east. So, we can rank three region by West better than ceuntrual and better than east.</p>
+</div>
+<div id="conclution" class="section level1">
+<h1>Conclution</h1>
+<p>In couclution, I would like to go over this post. The data set I hading using in this research is about living quality. Different type of graph has different preformance with to showing the result. Throught the data analysis that I had done above, West cities has the highest satisification for people to live with. People who live in est cities having a higher living quality score. In the end, I feel like the data set that I am using is a great resources for analysis practice. It helps me to figure out the best living place which is the question I had while work with this data set.</p>
 </div>
 
               
